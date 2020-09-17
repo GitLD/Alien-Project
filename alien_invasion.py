@@ -9,20 +9,21 @@ import game_functions as gf
 def run_game():
     # 初始化游戏并创建屏幕对象
     pygame.init()
-    alien_setting = Settings()
+    alien_settings = Settings()
     screen = pygame.display.set_mode(
-        (alien_setting.screen_width, alien_setting.screen_height))
+        (alien_settings.screen_width, alien_settings.screen_height))
     pygame.display.set_caption("Alien Invasion")
 
     # 创建一艘飞船
-    ship = Ship(screen)
+    ship = Ship(alien_settings, screen)
 
     # 开始主循环
     while True:
 
         # 监视键盘鼠标事件
-        gf.check_events()
-        
+        gf.check_events(ship)
+        # 更新飞船位置
+        ship.update()
         # 更新屏幕图像
         gf.update_screen(alien_settings, screen, ship)
 
