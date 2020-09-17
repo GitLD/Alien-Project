@@ -26,13 +26,8 @@ def run_game():
         gf.check_events(alien_settings, screen, ship, bullets)
         # 更新飞船位置
         ship.update()
-        # 更新所有子弹位置
-        bullets.update()
-        # 删除消失的子弹
-        for bullet in bullets.copy():   # 使用copy避免遍历过程对列表修改的问题
-            if bullet.rect.bottom <= 0:
-                bullets.remove(bullet)
-
+        # 更新所有子弹位置,并删除消失的子弹
+        gf.update_bullets(bullets)
         # 更新屏幕图像
         gf.update_screen(alien_settings, screen, ship, bullets)
 
