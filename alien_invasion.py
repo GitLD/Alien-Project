@@ -1,8 +1,10 @@
 import sys
 
 import pygame
+
 from settings import Settings
 from ship import Ship
+import game_functions as gf
 
 def run_game():
     # 初始化游戏并创建屏幕对象
@@ -15,22 +17,14 @@ def run_game():
     # 创建一艘飞船
     ship = Ship(screen)
 
-    # 设置背景色
-    bg_color = alien_setting.bg_color  # 浅灰色
-
     # 开始主循环
     while True:
 
         # 监视键盘鼠标事件
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
+        gf.check_events()
         
-        # 清空屏幕,重新绘制
-        screen.fill(bg_color)
-        ship.blit()
+        # 更新屏幕图像
+        gf.update_screen(alien_settings, screen, ship)
 
-        # 刷新画面
-        pygame.display.flip()
 
 run_game()
